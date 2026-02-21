@@ -730,9 +730,7 @@
           <h4 class="fw-semibold mb-3 font-body"
             style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;">Redes Sociais</h4>
           <div class="d-flex gap-2">
-            <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.instagram.com/comarevaltricheng/" target="_blank" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
       </div>
@@ -742,8 +740,8 @@
   </footer>
 
   <!-- ========== WHATSAPP BUTTON ========== -->
-  <a href="https://wa.me/5544998585741?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer" class="whatsapp-btn"
-    aria-label="Conversar no WhatsApp">
+  <a href="https://wa.me/5544998585741?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+    target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Conversar no WhatsApp">
     <i class="bi bi-whatsapp"></i>
   </a>
 
@@ -794,7 +792,6 @@
       return true;
     }
 
-
     document.getElementById("contactForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -805,6 +802,23 @@
       msg.className = "form-message";
       msg.style.display = "block";
       msg.textContent = "Enviando mensagem...";
+
+      let telefone = document.getElementById("telefone").value;
+  
+      telefone = telefone.replace(/\D/g, "");
+
+     
+      if (!telefone.startsWith("55")) {
+        telefone = "55" + telefone;
+      }
+
+      const mensagem = encodeURIComponent(
+        "Olá, recebi seu contato pelo site da Comar & Valtrich Engenharia."
+      );
+
+      const whatsappLink = "https://wa.me/" + telefone + "?text=" + mensagem;
+
+      data.append("WhatsApp", whatsappLink);
 
       fetch(form.action, {
         method: "POST",
@@ -826,6 +840,7 @@
           msg.textContent = "Erro ao enviar. Tente novamente.";
         });
     });
+
 
 
     /* ===== Fade-in on scroll ===== */
